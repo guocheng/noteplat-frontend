@@ -7,9 +7,8 @@ module.exports = {
         javascript: [
             'webpack-dev-server/client?http://127.0.0.1:3000',
             'webpack/hot/only-dev-server',
-            './js/index.js'
+            './app/src/index.js'
         ],
-        html: './index.html'
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -20,12 +19,18 @@ module.exports = {
             test: /\.jsx?$/,
             loaders: ['react-hot', 'babel-loader'],
             exclude: /node_modules/
-        }, {
-            test: /\index.html$/,
-            loader: 'file?name=[name].[ext]',
-        }, {
-            test: /\.css$/,
-            loaders:['style-loader', 'css-loader'],
+        },
+        {
+          test: /\.css$/,
+          loader: "style!css"
+        },
+        {
+          test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+          loader: "url-loader?limit=10000&minetype=application/font-woff"
+        },
+        {
+          test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+          loader: "file-loader"
         }]
     },
     resolve: {
