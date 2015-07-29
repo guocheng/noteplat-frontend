@@ -2,7 +2,21 @@
 	"folders":
 	[
 		{
-			"path": "."
+			"path": ".",
+            "binary_file_patterns": ["*.jpg", "*.jpeg", "*.png", "*.gif", "*.ttf", "*.tga", "*.dds", "*.ico", "*.eot", "*.pdf", "*.swf", "*.jar", "*.zip"],
+            "folder_exclude_patterns": ["node_modules"]
 		}
-	]
+	],
+    "SublimeLinter":
+   {
+       "linters":
+       {
+           "eslint": {
+               "excludes": [
+                   "dist/*",
+                   "node_modules/*"
+               ]
+           }
+       }
+   }
 }

@@ -4,26 +4,6 @@
 		"selected_items":
 		[
 			[
-				"Qu",
-				"QuestionTypePreview"
-			],
-			[
-				"Questio",
-				"QuestionTypeSelector"
-			],
-			[
-				"Ques",
-				"QuestionList"
-			],
-			[
-				"Que",
-				"QuestionTypeSelector"
-			],
-			[
-				"re",
-				"require"
-			],
-			[
 				"ha",
 				"handleDelete"
 			],
@@ -50,6 +30,10 @@
 			[
 				"han",
 				"handleAddNewQuestion"
+			],
+			[
+				"Qu",
+				"QuestionList"
 			],
 			[
 				"st-",
@@ -431,6 +415,74 @@
 	},
 	"buffers":
 	[
+		{
+			"contents": "var React = require('react');\n\nvar Form = React.createClass({\n    handleSubmit: function(e) {\n      e.preventDefault();\n    },\n    render: function () {\n        return(\n            <form className=\"editorForm\" encType='multipart/form-data'\n onSubmit={this.handleSubmit}>\n                <TitleInput />\n                <div className=\"form-group\">\n                    <textarea className=\"form-control\" rows=\"5\" placeholder=\"调研简介(用户可以看到)\"/>\n                </div>\n                <div className=\"form-horizontal\">\n                    <QuestionList />\n                </div>\n                <input type=\"text\" placeholder=\"Say something...\" ref=\"text\" />\n                <input type=\"submit\" value=\"Post\" />\n            </form>\n        );\n    }\n});\n\nmodule.exports = Form;\n",
+			"file": "js/components/Form.react.js",
+			"file_size": 791,
+			"file_write_time": 130820482940000000,
+			"settings":
+			{
+				"buffer_size": 771,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "var webpack = require('webpack');\nvar path = require('path');\n\nmodule.exports = {\n    devtool: 'eval',\n    entry: {\n        javascript: [\n            'webpack-dev-server/client?http://127.0.0.1:3000',\n            'webpack/hot/only-dev-server',\n            './js/app.jsx'\n        ],\n        html: './index.html'\n    },\n    output: {\n        path: path.resolve(__dirname, 'dist'),\n        filename: 'bundle.js'\n    },\n    module: {\n        preLoaders: [{\n              test: /\\.js?$/,\n              exclude: /node_modules/,\n              loader: 'jsxhint'\n        }],\n        loaders: [\n            {\n                test: /\\.jsx$/,\n                loaders: ['react-hot', 'babel-loader'],\n                exclude: /node_modules/\n            },\n            {\n              test: /\\index.html$/,\n              loader: \"file?name=[name].[ext]\",\n            }\n        ]\n    },\n    resolve: {\n      extensions: ['', '.js', '.jsx']\n    },\n    plugins: [\n        new webpack.HotModuleReplacementPlugin(),\n        new webpack.NoErrorsPlugin()\n    ]\n};\n",
+			"file": "webpack.config.js",
+			"file_size": 1042,
+			"file_write_time": 130821181690000000,
+			"settings":
+			{
+				"buffer_size": 1042,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "js/app/app.jsx",
+			"settings":
+			{
+				"buffer_size": 144,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "package.json",
+			"settings":
+			{
+				"buffer_size": 905,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "",
+			"file": "js/build/bundle.js",
+			"file_size": 0,
+			"file_write_time": 130820487140000000,
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "js/build/index.html",
+			"settings":
+			{
+				"buffer_size": 2101,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "var React = require('react');\n\nvar TitleInput = React.createClass({\n    getInitialState: function () {\n        return {value: \"\"};\n    },\n    handleChange: function () {\n        this.setState({value: event.target.value});\n    },\n    handleBlur: function () {\n        if(this.state.value.length === 0) {\n            this.setState({value: \"\"});\n        }\n    },\n    render: function () {\n        var value = this.state.value;\n        return (\n            <div className=\"form-group hovering-textarea-container\">\n                <input className=\"form-control input-lg\" type=\"text\" value={value} onChange={this.handleChange} onBlur={this.handleBlur} placeholder=\"输入调研主题\"/>\n            </div>\n        );\n    }\n});\n",
+			"file": "js/components/TitleInput.react.js",
+			"file_size": 722,
+			"file_write_time": 130820483450000000,
+			"settings":
+			{
+				"buffer_size": 710,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -440,20 +492,20 @@
 	"command_palette":
 	{
 		"height": 354.0,
-		"last_filter": "js",
+		"last_filter": "insta",
 		"selected_items":
 		[
 			[
-				"js",
-				"Set Syntax: JavaScript"
+				"insta",
+				"Package Control: Install Package"
 			],
 			[
-				"babel",
+				"javasc",
 				"Set Syntax: JavaScript (Babel)"
 			],
 			[
-				"insta",
-				"Package Control: Install Package"
+				"json",
+				"Set Syntax: JSON"
 			],
 			[
 				"prv ex",
@@ -476,7 +528,7 @@
 				"PackageResourceViewer: Open Resource"
 			],
 			[
-				"json",
+				"js",
 				"Set Syntax: JSON"
 			],
 			[
@@ -756,46 +808,23 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/cheng/Dev/noteplat-frontend",
-		"/Users/cheng/Dev/noteplat-frontend/dist",
-		"/Users/cheng/Dev/noteplat-frontend/js",
-		"/Users/cheng/Dev/noteplat-frontend/js/build",
-		"/Users/cheng/Dev/noteplat-frontend/js/components",
-		"/Users/cheng/Dev/noteplat-frontend/js_old/src",
-		"/Users/cheng/Dev/noteplat-frontend/node_modules",
-		"/Users/cheng/Dev/noteplat-frontend/node_modules/react-bootstrap"
+		"/Users/cheng/Dev/noteplat-frontend"
 	],
 	"file_history":
 	[
-		"/Users/cheng/Dev/noteplat-frontend/js/server.js",
-		"/Users/cheng/Dev/noteplat-frontend/index.html",
-		"/Users/cheng/Dev/noteplat-frontend/js/components/Form.jsx",
-		"/Users/cheng/Dev/noteplat-frontend/js/components/QuestionList.jsx",
-		"/Users/cheng/Dev/noteplat-frontend/js/components/QuestionTypeSelector.jsx",
-		"/Users/cheng/Dev/noteplat-frontend/js/components/QuestionEditor.jsx",
-		"/Users/cheng/Dev/noteplat-frontend/js/components/AddButton.jsx",
-		"/Users/cheng/Dev/noteplat-frontend/package.json",
-		"/Users/cheng/Dev/noteplat-frontend/webpack.config.js",
-		"/Users/cheng/Dev/noteplat-frontend/js/app/components/Form.jsx",
-		"/Users/cheng/Dev/noteplat-frontend/js/app/components/QuestionEditor.jsx",
-		"/Users/cheng/Dev/noteplat-frontend/js/components/QuestionTypePreview.jsx",
-		"/Users/cheng/Dev/noteplat-frontend/js/app/components/QuestionTypeSelector.jsx",
-		"/Users/cheng/Dev/noteplat-frontend/js/app/components/TitleInput.jsx",
-		"/Users/cheng/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
-		"/Users/cheng/Dev/noteplat-frontend/js/app/app.jsx",
-		"/Users/cheng/Dev/noteplat-frontend/js_old/out/form.js",
-		"/Users/cheng/Dev/noteplat-frontend/404.html",
-		"/Users/cheng/Dev/noteplat-frontend/dist/bundle.js",
+		"/Users/cheng/Dev/noteplat-frontend/js/app.js",
+		"/Users/cheng/Dev/noteplat-frontend/js/build/bundle.js",
 		"/Users/cheng/.bash_profile",
-		"/Users/cheng/Library/Application Support/Sublime Text 3/Packages/User/react-getInitialState.sublime-snippet",
-		"/Users/cheng/Dev/noteplat-frontend/todo.html",
-		"/Users/cheng/Dev/noteplat-frontend/js/out/tweetbox.js",
-		"/Users/cheng/Dev/noteplat-frontend/js/src/todo.jsx",
+		"/Users/cheng/Dev/noteplat-frontend/js/components/QuestionEditor.react.js",
 		"/Users/cheng/Dev/noteplat-frontend/css/main.css",
+		"/Users/cheng/Dev/noteplat-frontend/index.html",
+		"/Users/cheng/Dev/noteplat-frontend/todo.html",
+		"/Users/cheng/Dev/noteplat-frontend/js_old/.jshintrc",
 		"/Users/cheng/Dev/flux/package.json",
+		"/Users/cheng/Library/Application Support/Sublime Text 3/Packages/User/react-getInitialState.sublime-snippet",
+		"/Users/cheng/Dev/noteplat-frontend/js/src/todo.jsx",
+		"/Users/cheng/Dev/noteplat-frontend/js/out/tweetbox.js",
 		"/Users/cheng/Dev/flux/index.js",
-		"/Users/cheng/Dev/noteplat-frontend/js/components/dispatcher/AppDispatcher.js",
-		"/Users/cheng/Dev/noteplat-frontend/js/components",
 		"/Users/cheng/Dev/flux/npm-debug.log",
 		"/Users/cheng/Dev/noteplat-frontend/js/src/question_editor.jsx",
 		"/Users/cheng/Dev/noteplat-frontend/js/out/question_editor.js",
@@ -803,6 +832,7 @@
 		"/Users/cheng/Library/Application Support/Sublime Text 3/Packages/User/react-createclass.sublime-snippet",
 		"/Users/cheng/Library/Application Support/Sublime Text 3/Packages/JavaScript/react-createclass.sublime-snippet",
 		"/Users/cheng/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/cheng/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 		"/Users/cheng/Dev/voice_project/static/css/site.css",
 		"/Users/cheng/Dev/noteplat-frontend/js/.jshintrc",
 		"/Users/cheng/Library/Application Support/Sublime Text 3/Packages/JavaScript/Object-Method.sublime-snippet",
@@ -894,7 +924,22 @@
 		"/Users/cheng/Dev/waimai_project/static/css/site.css",
 		"/Users/cheng/Dev/noteplatform/templates/journal_backend/journal_create.html",
 		"/Users/cheng/Dev/noteplatform/templates/journal_backend/question_create.html",
-		"/Users/cheng/Dev/noteplatform/journal_backend/models.py"
+		"/Users/cheng/Dev/noteplatform/journal_backend/models.py",
+		"/Users/cheng/Dev/noteplatform/journal_backend/views.py",
+		"/Users/cheng/Dev/notes_proj/note/views.py",
+		"/Users/cheng/百度云同步盘/Dev/django-dynamic-formset-master/demo/manage.py",
+		"/Users/cheng/百度云同步盘/Dev/django-dynamic-formset-master/demo/example/forms.py",
+		"/Users/cheng/百度云同步盘/Dev/django-dynamic-formset-master/demo/settings.py",
+		"/Users/cheng/百度云同步盘/Dev/django-dynamic-formset-master/demo/templates/example/formset-table.html",
+		"/Users/cheng/百度云同步盘/Dev/django-dynamic-formset-master/demo/templates/base.html",
+		"/Users/cheng/.ShadowsocksX/gfwlist.js",
+		"/Users/cheng/Dev/notes_proj/templates/note.html",
+		"/Users/cheng/Dev/noteplatform/static/js/site.js",
+		"/Users/cheng/Design/测试/test.html",
+		"/Users/cheng/百度云同步盘/Server/notes_proj_server_version/nginx.conf",
+		"/Users/cheng/Dev/notes_proj/notes_proj/urls.py",
+		"/Users/cheng/Dev/notes_proj/note/static/css/site.css",
+		"/Users/cheng/Dev/noteplatform/templates/journal_backend/journal_list.html"
 	],
 	"find":
 	{
@@ -913,7 +958,6 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"webpack",
 			"Button",
 			"webkit",
 			"form",
@@ -1040,7 +1084,8 @@
 			"{\n",
 			"ctrl+a",
 			".instructions",
-			"1px"
+			"1px",
+			"st-content"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1086,8 +1131,625 @@
 	"groups":
 	[
 		{
+			"selected": 1,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "js/components/Form.react.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 771,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								770,
+								770
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"_anf_new": "",
+							"bh_regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"syntax": "Packages/Babel/JavaScript (Babel).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "webpack.config.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1042,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								183,
+								183
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"_anf_new": "",
+							"bh_regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "js/app/app.jsx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 144,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								134,
+								138
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "package.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 905,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								133,
+								133
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "js/build/bundle.js",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "js/build/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2101,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1186,
+								1186
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "js/components/TitleInput.react.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 710,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								710,
+								710
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"_anf_new": "",
+							"bh_regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -1144,44 +1806,16 @@
 		"selected_items":
 		[
 			[
-				"preview",
-				"js/components/QuestionTypePreview.jsx"
-			],
-			[
-				"selector",
-				"js/components/QuestionTypeSelector.jsx"
-			],
-			[
-				"webpa",
-				"webpack.config.js"
-			],
-			[
-				"questione",
-				"js/app/components/QuestionEditor.jsx"
-			],
-			[
-				"form",
-				"js/app/components/Form.jsx"
-			],
-			[
-				"inde",
-				"index.html"
-			],
-			[
-				"we",
-				"webpack.config.js"
-			],
-			[
 				"pac",
 				"package.json"
 			],
 			[
-				"web",
-				"webpack.config.js"
-			],
-			[
 				"ind",
 				"index.html"
+			],
+			[
+				"hint",
+				"js_old/.jshintrc"
 			],
 			[
 				"mai",
@@ -1254,6 +1888,10 @@
 			[
 				"note",
 				"templates/noteset.html"
+			],
+			[
+				"inde",
+				"templates/index.html"
 			],
 			[
 				"model",

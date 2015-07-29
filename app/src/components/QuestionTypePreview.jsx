@@ -17,9 +17,11 @@ var QuestionTypePreview = React.createClass({
                 previewElement = <input className="form-control" type="text" placeholder="输入问题" />;
                 break;
             case this.props.list[3]:
+                previewElement = <input className="form-control" type="text" placeholder="输入问题" />;
+                break;
+            case this.props.list[4]:
                 previewElement = <Button bsStyle="primary" bsSize="medium" disabled={true}>上传照片</Button>;
                 break;
-
         }
 
         return (

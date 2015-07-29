@@ -47,7 +47,7 @@ var QuestionList = React.createClass({
     },
 
     _onCreateClick: function () {
-        QuestionActions.create('','', QuestionType.SINGLE_LINE_TEXT);
+        QuestionActions.create('','', Object.keys(QuestionType)[0]);
     },
 });
 

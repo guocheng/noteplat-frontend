@@ -8,6 +8,11 @@ var QuestionType = require('../constants/QuestionType');
 
 var QuestionEditor = React.createClass({
     render: function () {
+        var displayName = [];
+        for (var key in QuestionType){
+            displayName.push(QuestionType[key]);
+        }
+
         return (
             <div className="container-editor">
                 <div className="form-group">
@@ -20,7 +25,7 @@ var QuestionEditor = React.createClass({
                     </div>
                 </div>
 
-                <QuestionTypeSelector list={['单行文字', '段落', '多选', '照片']}/>
+                <QuestionTypeSelector list={displayName}/>
             </div>
         );
     },
