@@ -16,7 +16,12 @@
                    "dist/*",
                    "node_modules/*"
                ]
-           }
+           },
+           "jshint": {
+               "@disable": true,
+               "args": [],
+               "excludes": []
+           },
        }
    }
 }

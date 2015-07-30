@@ -1,16 +1,23 @@
 var React = require('react');
 var Button = require('react-bootstrap/lib/Button');
+var ReactPropTypes = React.PropTypes;
+var SinglelineText = require('./SinglelineText');
+var MultilineText = require('./MultilineText');
+
 
 var QuestionTypePreview = React.createClass({
+    propTypes: {
+      onSave: ReactPropTypes.func.isRequired
+    },
     render: function () {
         var previewElement;
 
-        switch(this.props.type){
+        switch (this.props.type){
             case this.props.list[0]:
-                previewElement = <input className="form-control" type="text" placeholder="输入提示" />;
+                previewElement = <SinglelineText onSave={this.props.onSave} qid={this.props.qid}/>;
                 break;
             case this.props.list[1]:
-                previewElement = <textarea className="form-control" rows="5" placeholder="输入提示"/>;
+                previewElement = <MultilineText onSave={this.props.onSave} qid={this.props.qid}/>;
                 break;
 
             case this.props.list[2]:

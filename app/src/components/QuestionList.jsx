@@ -4,6 +4,7 @@ var AddButton = require('./AddButton');
 var QuestionStore = require('../stores/QuestionStore');
 var QuestionType = require('../constants/QuestionType');
 var QuestionActions = require('../actions/QuestionActions');
+var MountMixin = require('../mixins/MountMixin');
 
 function getQuestionState(){
     return {
@@ -16,18 +17,12 @@ var QuestionList = React.createClass({
         return getQuestionState();
     },
 
-    componentDidMount: function(){
-        QuestionStore.addChangeListener(this._onChange);
-    },
-
-    componentWillUnmount: function () {
-        QuestionStore.removeChangeListener(this._onChange);
-    },
+    mixins: [MountMixin],
 
     render: function() {
         var questions = null;
         var allQuestions = this.state.allQuestions;
-        if(Object.keys(allQuestions).length > 0){
+        if (Object.keys(allQuestions).length > 0){
             questions = [];
             for (var key in allQuestions){
                 questions.push(<QuestionEditor key={key} question={allQuestions[key]} />);
@@ -44,11 +39,12 @@ var QuestionList = React.createClass({
 
     _onChange: function () {
         this.setState(getQuestionState());
+        console.log(this.state.allQuestions);
     },
 
     _onCreateClick: function () {
         QuestionActions.create('','', Object.keys(QuestionType)[0]);
-    },
+    }
 });
 
 module.exports = QuestionList;

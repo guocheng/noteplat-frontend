@@ -7,6 +7,11 @@ var QuestionActions = require('../actions/QuestionActions');
 var QuestionType = require('../constants/QuestionType');
 
 var QuestionEditor = React.createClass({
+    getInitialState: function() {
+        return {
+            value: ''
+        };
+    },
     render: function () {
         var displayName = [];
         for (var key in QuestionType){
@@ -18,16 +23,36 @@ var QuestionEditor = React.createClass({
                 <div className="form-group">
                     <label className="control-label col-sm-2">问题</label>
                     <div className="col-sm-8">
-                        <input className="form-control" type="text" placeholder="输入问题" />
+                        <input
+                            className="form-control"
+                            type="text"
+                            placeholder="输入问题"
+                            onBlur={this._onTextSave}
+                            onChange={this._onChange}
+                            value={this.state.value}/>
                     </div>
                     <div className="col-sm-1 col-sm-offset-1">
                          <Button onClick={this._onDestoryClick}><Glyphicon className="st-top-align" glyph={'trash'}/></Button>
                     </div>
                 </div>
 
-                <QuestionTypeSelector list={displayName}/>
+                <QuestionTypeSelector list={displayName} onSave={this._onSave} qid={this.props.question.id} />
             </div>
         );
+    },
+
+    _onTextSave: function () {
+        QuestionActions.update(this.props.question.id, {question_text: this.state.value});
+    },
+
+    _onSave: function(id, update_kv) {
+        QuestionActions.update(id, update_kv);
+    },
+
+    _onChange: function (event) {
+        this.setState({
+            value: event.target.value
+        });
     },
 
     _onDestoryClick: function () {

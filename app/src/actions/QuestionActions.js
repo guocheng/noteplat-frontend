@@ -17,6 +17,14 @@ var QuestionActions = {
             actionType: EventType.QUESTION_DESTROY,
             id: id
         });
+    },
+
+    update: function (id, update_kv) {
+        AppDispatcher.dispatch({
+            actionType: EventType.QUESTION_UPDATE,
+            id: id,
+            update_kv: update_kv
+        });
     }
 };
 

@@ -1,7 +1,6 @@
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var EventEmitter = require('events').EventEmitter;
 var EventType = require('../constants/EventType');
-var QuestionType = require('../constants/QuestionType');
 var assign = require('object-assign');
 
 var _questions = {};
@@ -13,7 +12,7 @@ var LIST_CHANGE_EVENT = 'change';
  * @param  {string} help_text text content of the help text
  * @param  {QuestionType} question_type type of a question
  */
-function create(question_text, placeholder_text, question_type, order){
+function create(question_text, placeholder_text, question_type, order) {
     var id = (+new Date() + Math.floor(Math.random() * 999999)).toString(36);
     _questions[id] = {
         id: id,
@@ -24,38 +23,46 @@ function create(question_text, placeholder_text, question_type, order){
     };
 }
 
-function destroy(id){
+function destroy(id) {
     /* console.log('Store destory called id:' + id); */
     delete _questions[id];
 }
 
+function update(id, update_kv) {
+    console.log(update_kv);
+    _questions[id] = assign({}, _questions[id], update_kv);
+}
+
 var QuestionStore = assign({}, EventEmitter.prototype, {
-    getAll: function () {
+    getAll: function() {
         return _questions;
     },
 
-    emitChange: function () {
+    emitChange: function() {
         this.emit(LIST_CHANGE_EVENT);
     },
 
-    addChangeListener: function (callback) {
+    addChangeListener: function(callback) {
         this.on(LIST_CHANGE_EVENT, callback);
     },
 
-    removeChangeListener: function (callback){
+    removeChangeListener: function(callback) {
         this.removeListener(LIST_CHANGE_EVENT, callback);
-    },
+    }
 });
 
-AppDispatcher.register(function (action) {
-    /* console.log('Dispatcher received action: ' + action.actionType); */
-    switch(action.actionType){
+AppDispatcher.register(function(action) {
+    switch (action.actionType) {
         case EventType.QUESTION_CREATE:
             create(action.question_text, action.placeholder_text, action.question_type);
             QuestionStore.emitChange();
             break;
         case EventType.QUESTION_DESTROY:
             destroy(action.id);
+            QuestionStore.emitChange();
+            break;
+        case EventType.QUESTION_UPDATE:
+            update(action.id, action.update_kv);
             QuestionStore.emitChange();
             break;
     }

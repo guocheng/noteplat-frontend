@@ -1,11 +1,13 @@
 var webpack = require('webpack');
 var path = require('path');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var Clean = require('clean-webpack-plugin');
 
 module.exports = {
     entry: {
         app: path.resolve(__dirname, 'app/src/index.js'),
-        vendors: ['react', 'flux', 'object-assign']
+        vendors: ['react', 'flux', 'object-assign', 'keymirror'],
+        html: path.resolve(__dirname, 'build/index.html')
     },
     output: {
         path: path.resolve(__dirname, 'dist', 'css'),
@@ -35,6 +37,7 @@ module.exports = {
     },
     plugins: [
         new webpack.optimize.CommonsChunkPlugin('vendors', '../js/vendors.js'),
-        new ExtractTextPlugin('all.css', {allChunks: true})
+        new ExtractTextPlugin('all.css', {allChunks: true}),
+        new Clean(['dist'])
     ]
 };
