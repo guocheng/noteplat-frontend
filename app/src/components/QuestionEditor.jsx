@@ -1,5 +1,4 @@
 var React = require('react');
-var Input = require('react-bootstrap/lib/Input');
 var Button = require('react-bootstrap/lib/Button');
 var Glyphicon = require('react-bootstrap/lib/Glyphicon');
 var QuestionTypeSelector = require('./QuestionTypeSelector');
@@ -42,11 +41,11 @@ var QuestionEditor = React.createClass({
     },
 
     _onTextSave: function () {
-        QuestionActions.update(this.props.question.id, {question_text: this.state.value});
+        QuestionActions.update(this.props.question.id, {questionText: this.state.value});
     },
 
-    _onSave: function(id, update_kv) {
-        QuestionActions.update(id, update_kv);
+    _onSave: function(id, updateKV) {
+        QuestionActions.update(id, updateKV);
     },
 
     _onChange: function (event) {
@@ -57,7 +56,7 @@ var QuestionEditor = React.createClass({
 
     _onDestoryClick: function () {
         QuestionActions.destroy(this.props.question.id);
-    },
+    }
 });
 
 module.exports = QuestionEditor;

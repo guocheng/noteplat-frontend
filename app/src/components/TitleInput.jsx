@@ -2,14 +2,14 @@ var React = require('react');
 
 var TitleInput = React.createClass({
     getInitialState: function () {
-        return {value: ""};
+        return {value: ''};
     },
     handleChange: function () {
         this.setState({value: event.target.value});
     },
     handleBlur: function () {
-        if(this.state.value.length === 0) {
-            this.setState({value: ""});
+        if (this.state.value.length === 0) {
+            this.setState({value: ''});
         }
     },
     render: function () {

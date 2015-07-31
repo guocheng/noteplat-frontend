@@ -8,17 +8,17 @@ var LIST_CHANGE_EVENT = 'change';
 
 /**
  * Create a new queston object
- * @param  {string} question_text text content of a question
+ * @param  {string} questionText text content of a question
  * @param  {string} help_text text content of the help text
- * @param  {QuestionType} question_type type of a question
+ * @param  {QuestionType} questionType type of a question
  */
-function create(question_text, placeholder_text, question_type, order) {
+function create(questionText, placeholderText, questionType, order) {
     var id = (+new Date() + Math.floor(Math.random() * 999999)).toString(36);
     _questions[id] = {
         id: id,
-        question_text: question_text,
-        placeholder_text: placeholder_text,
-        question_type: question_type,
+        questionText: questionText,
+        placeholderText: placeholderText,
+        questionType: questionType,
         order: order
     };
 }
@@ -28,9 +28,9 @@ function destroy(id) {
     delete _questions[id];
 }
 
-function update(id, update_kv) {
-    console.log(update_kv);
-    _questions[id] = assign({}, _questions[id], update_kv);
+function update(id, updateKV) {
+    console.log(updateKV);
+    _questions[id] = assign({}, _questions[id], updateKV);
 }
 
 var QuestionStore = assign({}, EventEmitter.prototype, {
@@ -54,7 +54,7 @@ var QuestionStore = assign({}, EventEmitter.prototype, {
 AppDispatcher.register(function(action) {
     switch (action.actionType) {
         case EventType.QUESTION_CREATE:
-            create(action.question_text, action.placeholder_text, action.question_type);
+            create(action.questionText, action.placeholderText, action.questionType);
             QuestionStore.emitChange();
             break;
         case EventType.QUESTION_DESTROY:
@@ -62,7 +62,7 @@ AppDispatcher.register(function(action) {
             QuestionStore.emitChange();
             break;
         case EventType.QUESTION_UPDATE:
-            update(action.id, action.update_kv);
+            update(action.id, action.updateKV);
             QuestionStore.emitChange();
             break;
     }

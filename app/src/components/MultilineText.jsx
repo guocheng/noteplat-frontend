@@ -19,7 +19,7 @@ var MultilineText = React.createClass({
     },
 
     _onSave: function () {
-        this.props.onSave(this.props.qid, {placeholder_text: this.state.value});
+        this.props.onSave(this.props.qid, {placeholderText: this.state.value});
     },
 
     _onChange: function (event) {

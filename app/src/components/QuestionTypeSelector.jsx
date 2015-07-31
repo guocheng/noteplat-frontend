@@ -11,12 +11,12 @@ var QuestionTypeSelector = React.createClass({
     },
     getInitialState: function () {
         return {
-            selection: this.props.list[0],
+            selection: this.props.list[0]
         };
     },
     handleSelect: function (index) {
         this.setState({selection: index});
-        QuestionActions.update(this.props.qid, {question_type: index, placeholder_text:''});
+        QuestionActions.update(this.props.qid, {questionType: index, placeholderText:''});
     },
     render: function  () {
         var itemList = (this.props.list.map(function (element, index) {

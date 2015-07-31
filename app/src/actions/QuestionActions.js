@@ -2,12 +2,12 @@ var AppDispatcher = require('../dispatcher/AppDispatcher');
 var EventType = require('../constants/EventType');
 
 var QuestionActions = {
-    create: function (question_text, placeholder_text, question_type, order) {
+    create: function (questionText, placeholderText, questionType, order) {
         AppDispatcher.dispatch({
             actionType: EventType.QUESTION_CREATE,
-            question_text: question_text,
-            placeholder_text: placeholder_text,
-            question_type: question_type,
+            questionText: questionText,
+            placeholderText: placeholderText,
+            questionType: questionType,
             order: order
         });
     },
@@ -19,11 +19,11 @@ var QuestionActions = {
         });
     },
 
-    update: function (id, update_kv) {
+    update: function (id, updateKV) {
         AppDispatcher.dispatch({
             actionType: EventType.QUESTION_UPDATE,
             id: id,
-            update_kv: update_kv
+            updateKV: updateKV
         });
     }
 };

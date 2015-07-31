@@ -7,7 +7,7 @@ var Form = React.createClass({
       e.preventDefault();
     },
     render: function () {
-        return(
+        return (
             <div className="container">
                 <div className="row col-sm-offset-1 col-md-10 col-md-offset-1">
                     <form className="editorForm" encType='multipart/form-data'
