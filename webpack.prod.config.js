@@ -10,7 +10,7 @@ module.exports = {
         vendors: ['react', 'flux', 'object-assign', 'keymirror']
     },
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'dist', 'css'),
         filename: '../js/[name].js'
     },
     module: {
@@ -18,18 +18,18 @@ module.exports = {
             test: /\.jsx?$/,
             loaders: ['react-hot', 'babel-loader'],
             exclude: /node_modules/
-        },
-        {
-          test: /\.css$/,
-          loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
-        },
-        {
-          test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-          loader: 'url-loader?limit=10000&mimetype=application/font-woff'
-        },
-        {
-          test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-          loader: 'file-loader?[path][name].[ext]'
+        }, {
+            test: /\.css$/,
+            loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+        }, {
+            test: /\.(png|jpg)$/,
+            loader: 'url-loader?limit=8192'
+        }, {
+            test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+            loader: 'url-loader?limit=10000&mimetype=application/font-woff'
+        },{
+            test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+            loader: 'file-loader'
         }]
     },
     resolve: {

@@ -177,9 +177,24 @@ button.st-add-button:active{
     box-shadow: 1px 0 10px 1px rgba(0,0,0,0.3);
 }
 
+.st-drag-handle{
+    margin-bottom: 6px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2px;
+    height: 6px;
+    width: 18px;
+    cursor: move;
+}
 
+.test-appear {
+    max-height: 100px;
+}
 
-
+.test-appear.test-appear-active {
+    max-height: 200px;
+    transition: max-height .1s linear;
+}
 
 
 
