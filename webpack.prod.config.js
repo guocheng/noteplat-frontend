@@ -1,8 +1,9 @@
-var webpack = require('webpack');
-var path = require('path');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var Clean = require('clean-webpack-plugin');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+var webpack = require('webpack'),
+    path = require('path'),
+    ExtractTextPlugin = require('extract-text-webpack-plugin'),
+    Clean = require('clean-webpack-plugin'),
+    HtmlWebpackPlugin = require('html-webpack-plugin'),
+    autoprefixer = require('autoprefixer-core');
 
 module.exports = {
     entry: {
@@ -10,8 +11,8 @@ module.exports = {
         vendors: ['react', 'flux', 'object-assign', 'keymirror']
     },
     output: {
-        path: path.resolve(__dirname, 'dist', 'css'),
-        filename: '../js/[name].js'
+        path: path.resolve(__dirname, 'dist'),
+        filename: './js/[name].js'
     },
     module: {
         loaders: [{
@@ -20,7 +21,7 @@ module.exports = {
             exclude: /node_modules/
         }, {
             test: /\.css$/,
-            loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+            loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader')
         }, {
             test: /\.(png|jpg)$/,
             loader: 'url-loader?limit=8192'
@@ -32,11 +33,12 @@ module.exports = {
             loader: 'file-loader'
         }]
     },
+    postcss:[ autoprefixer({ browsers: ['last 2 versions']})],
     resolve: {
         extensions: ['', '.js', '.jsx']
     },
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin('vendors', '../js/vendors.js'),
+        new webpack.optimize.CommonsChunkPlugin('vendors', './js/vendors.js'),
         new ExtractTextPlugin(
             './css/all.css',
             {allChunks: true}),

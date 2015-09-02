@@ -1,4 +1,4 @@
-var React = require('react'),
+var React = require('react/addons'),
     QuestionEditor = require('./QuestionEditor'),
     AddButton = require('./AddButton'),
     QuestionStore = require('../stores/QuestionStore'),
@@ -33,12 +33,15 @@ var QuestionList = React.createClass({
                     />);
             });
         }
+        var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
         return (
-          <div>
-              {questions}
-              <AddButton onClick={this._onCreateClick} />
-          </div>
+            <div>
+                <ReactCSSTransitionGroup transitionName='test'>
+                    {questions}
+                </ReactCSSTransitionGroup>
+                <AddButton onClick={this._onCreateClick} />
+            </div>
         );
     },
 

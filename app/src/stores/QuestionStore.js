@@ -83,6 +83,7 @@ function swap(id1, id2) {
 
 var QuestionStore = assign({}, EventEmitter.prototype, {
     getAll: function() {
+        console.log(_questions);
         return _questions;
     },
 
@@ -122,7 +123,6 @@ AppDispatcher.register(function(action) {
             break;
         case EventType.QUESTION_SWAP:
             swap(action.id1, action.id2);
-
             QuestionStore.emitChange();
             break;
     }

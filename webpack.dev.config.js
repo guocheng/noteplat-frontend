@@ -1,5 +1,6 @@
-var webpack = require('webpack');
-var path = require('path');
+var webpack = require('webpack'),
+    path = require('path'),
+    autoprefixer = require('autoprefixer-core');
 
 module.exports = {
     devtool: 'eval',
@@ -21,7 +22,7 @@ module.exports = {
             exclude: /node_modules/
         },{
             test: /\.css$/,
-            loader: 'style!css'
+            loader: 'style!css!postcss'
         },{
             test: /\.(png|jpg)$/,
             loader: 'url-loader?limit=8192'
@@ -33,6 +34,7 @@ module.exports = {
             loader: 'file-loader'
         }]
     },
+    postcss:[ autoprefixer({ browsers: ['last 2 versions']})],
     resolve: {
         extensions: ['', '.js', '.jsx']
     },

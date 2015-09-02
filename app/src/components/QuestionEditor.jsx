@@ -30,11 +30,11 @@ var QuestionEditor = React.createClass({
             backgroundImage: 'url(' + require('../../img/draghandle.png') + ')'
         };
 
-        var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+        /* var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup; */
 
         return this.props.connectDragPreview(this.props.connectDropTarget(
-            <ReactCSSTransitionGroup transitionName='test' transitionAppear={true}>
-                <div className='container-editor' style={{opacity:this.props.isDragging ? 0.4 : 1}}>
+/*             <ReactCSSTransitionGroup transitionName='test' transitionAppear={true}> */
+                <div className='container-editor' /* style={{opacity:this.props.isDragging ? 0.4 : 1}} */>
                     {this.props.connectDragSource(<div className='st-drag-handle' style={style}></div>)}
                     <div className="form-group">
                         <label className="control-label col-sm-2">问题</label>
@@ -54,7 +54,7 @@ var QuestionEditor = React.createClass({
 
                     <QuestionTypeSelector list={displayName} onSave={this._onSave} qid={this.props.question.id} />
                 </div>
-            </ReactCSSTransitionGroup>
+            /* </ReactCSSTransitionGroup> */
         ));
     },
 
