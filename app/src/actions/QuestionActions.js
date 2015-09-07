@@ -25,6 +25,14 @@ var QuestionActions = {
             id: id,
             updateKV: updateKV
         });
+    },
+
+    swap: function(id1, id2) {
+        AppDispatcher.dispatch({
+            actionType: EventType.QUESTION_SWAP,
+            id1: id1,
+            id2: id2
+        });
     }
 };
 

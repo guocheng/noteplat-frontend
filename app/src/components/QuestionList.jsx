@@ -1,10 +1,12 @@
-var React = require('react');
-var QuestionEditor = require('./QuestionEditor');
-var AddButton = require('./AddButton');
-var QuestionStore = require('../stores/QuestionStore');
-var QuestionType = require('../constants/QuestionType');
-var QuestionActions = require('../actions/QuestionActions');
-var MountMixin = require('../mixins/MountMixin');
+var React = require('react/addons'),
+    QuestionEditor = require('./QuestionEditor'),
+    AddButton = require('./AddButton'),
+    QuestionStore = require('../stores/QuestionStore'),
+    QuestionType = require('../constants/QuestionType'),
+    QuestionActions = require('../actions/QuestionActions'),
+    MountMixin = require('../mixins/MountMixin'),
+    HTML5Backend = require('react-dnd/modules/backends/HTML5'),
+    ReactDnD = require('react-dnd');
 
 function getQuestionState(){
     return {
@@ -22,24 +24,29 @@ var QuestionList = React.createClass({
     render: function() {
         var questions = null;
         var allQuestions = this.state.allQuestions;
-        if (Object.keys(allQuestions).length > 0){
-            questions = [];
-            for (var key in allQuestions){
-                questions.push(<QuestionEditor key={key} question={allQuestions[key]} />);
-            }
+        if (allQuestions.length > 0){
+            questions = allQuestions.map(function (question){
+                return (
+                    <QuestionEditor
+                        key={question.id}
+                        question={question}
+                    />);
+            });
         }
+        var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
         return (
-          <div>
-              {questions}
-              <AddButton onClick={this._onCreateClick} />
-          </div>
+            <div>
+                <ReactCSSTransitionGroup transitionName='test'>
+                    {questions}
+                </ReactCSSTransitionGroup>
+                <AddButton onClick={this._onCreateClick} />
+            </div>
         );
     },
 
     _onChange: function () {
         this.setState(getQuestionState());
-        console.log(this.state.allQuestions);
     },
 
     _onCreateClick: function () {
@@ -47,4 +54,4 @@ var QuestionList = React.createClass({
     }
 });
 
-module.exports = QuestionList;
+module.exports = ReactDnD.DragDropContext(HTML5Backend)(QuestionList);

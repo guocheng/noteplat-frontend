@@ -9,5 +9,5 @@ gulp.task('lint', function(){
 });
 
 gulp.task('watch', function(){
-    gulp.watch('app/src/*.jsx', ['lint']);
+    gulp.watch('app/src/**', ['lint']);
 });
