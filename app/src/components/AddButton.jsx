@@ -7,7 +7,7 @@ var AddButton = React.createClass({
         return (
             <Button className="st-add-button" bsStyle={'primary'} bsSize={'large'} block={true} onClick={this.props.onClick}><Glyphicon className="st-top-align" glyph={'plus-sign'}/> 添加新问题 </Button>
         );
-    },
+    }
 });
 
 module.exports = AddButton;
