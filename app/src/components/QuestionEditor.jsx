@@ -75,8 +75,6 @@ var QuestionEditor = React.createClass({
     _onDestoryClick: function () {
         QuestionActions.destroy(this.props.question.id);
     }
-<<<<<<< HEAD
-=======
 });
 
 var questionSource = {
@@ -109,7 +107,6 @@ var DropTargetDecorator = ReactDnD.DropTarget(DndTypes.QUESTION, questionTarget,
         return {
             connectDropTarget: connect.dropTarget()
         };
->>>>>>> e88ab08ee0efef38e23857d658c038ad568dabd8
 });
 
 module.exports = DropTargetDecorator(DragSourceDecorator(QuestionEditor));
