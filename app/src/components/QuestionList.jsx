@@ -1,12 +1,13 @@
-var React = require('react/addons'),
-    QuestionEditor = require('./QuestionEditor'),
-    AddButton = require('./AddButton'),
-    QuestionStore = require('../stores/QuestionStore'),
-    QuestionType = require('../constants/QuestionType'),
-    QuestionActions = require('../actions/QuestionActions'),
-    MountMixin = require('../mixins/MountMixin'),
-    HTML5Backend = require('react-dnd/modules/backends/HTML5'),
-    ReactDnD = require('react-dnd');
+import React from 'react';
+import QuestionEditor from './QuestionEditor';
+import AddButton from './AddButton';
+import QuestionStore from '../stores/QuestionStore';
+import QuestionType from '../constants/QuestionType';
+import QuestionActions from '../actions/QuestionActions';
+import HTML5Backend from 'react-dnd/modules/backends/HTML5';
+import { DragDropContext } from 'react-dnd';
+
+let {Component, PropTypes} = React;
 
 function getQuestionState(){
     return {
@@ -14,14 +15,34 @@ function getQuestionState(){
     };
 }
 
-var QuestionList = React.createClass({
-    getInitialState: function () {
-        return getQuestionState();
-    },
+class QuestionList extends Component{
 
-    mixins: [MountMixin],
+    static propTypes = {
+        allQuestions: PropTypes.arrayOf(PropTypes.object)
+    }
 
-    render: function() {
+    constructor() {
+        super();
+        this.state = getQuestionState();
+    }
+
+    componentDidMount() {
+        QuestionStore.addChangeListener(this._onChange);
+    }
+
+    componentWillUnmount() {
+        QuestionStore.removeChangeListener(this._onChange);
+    }
+
+    _onChange = () => {
+        this.setState(getQuestionState());
+    }
+
+    _onCreateClick = () => {
+        QuestionActions.create('','', Object.keys(QuestionType)[0]);
+    }
+
+    render() {
         var questions = null;
         var allQuestions = this.state.allQuestions;
         if (allQuestions.length > 0){
@@ -40,18 +61,11 @@ var QuestionList = React.createClass({
                 <ReactCSSTransitionGroup transitionName='test'>
                     {questions}
                 </ReactCSSTransitionGroup>
+
                 <AddButton onClick={this._onCreateClick} />
             </div>
         );
-    },
-
-    _onChange: function () {
-        this.setState(getQuestionState());
-    },
-
-    _onCreateClick: function () {
-        QuestionActions.create('','', Object.keys(QuestionType)[0]);
     }
-});
+}
 
-module.exports = ReactDnD.DragDropContext(HTML5Backend)(QuestionList);
+export default DragDropContext(HTML5Backend)(QuestionList);

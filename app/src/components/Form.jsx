@@ -1,17 +1,18 @@
-var React = require('react');
-var TitleInput = require('./TitleInput');
-var QuestionList = require('./QuestionList');
+import React from 'react';
+import TitleInput from './TitleInput';
+import QuestionList from './QuestionList';
 
-var Form = React.createClass({
-    handleSubmit: function(e) {
+export default class Form extends React.Component{
+    handleSubmit(e) {
       e.preventDefault();
-    },
-    render: function () {
+    }
+    render() {
         return (
             <div className="container">
                 <div className="row col-sm-offset-1 col-md-10 col-md-offset-1">
                     <form className="editorForm" encType='multipart/form-data'
          onSubmit={this.handleSubmit}>
+
                         <TitleInput />
                         <div className="form-group">
                             <textarea className="form-control" rows="5" placeholder="调研简介(用户可以看到)"/>
@@ -24,6 +25,4 @@ var Form = React.createClass({
             </div>
         );
     }
-});
-
-module.exports = Form;
+}

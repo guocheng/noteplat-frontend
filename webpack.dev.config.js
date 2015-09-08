@@ -1,6 +1,5 @@
 var webpack = require('webpack'),
-    path = require('path'),
-    autoprefixer = require('autoprefixer-core');
+    path = require('path');
 
 module.exports = {
     devtool: 'eval',
@@ -12,8 +11,9 @@ module.exports = {
         ]
     },
     output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js'
+        path: path.join(__dirname, 'dist'),
+        filename: 'bundle.js',
+        publicPath: '/js/'
     },
     module: {
         loaders: [{
@@ -22,16 +22,12 @@ module.exports = {
             exclude: /node_modules/
         },{
             test: /\.css$/,
-            loader: 'style!css!postcss'
+            loader: 'style!css'
         },{
-            test: /\.(png|jpg)$/,
+            test: /\.(png|woff|woff2|eot|ttf|svg)$/,
             loader: 'url-loader?limit=8192'
-        },{
-            test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-            loader: 'url-loader?limit=10000&minetype=application/font-woff&name=./css/[name].[ext]'
         }]
     },
-    postcss:[ autoprefixer({ browsers: ['last 2 versions']})],
     resolve: {
         extensions: ['', '.js', '.jsx']
     },

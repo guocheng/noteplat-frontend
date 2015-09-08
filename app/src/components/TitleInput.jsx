@@ -1,25 +1,26 @@
-var React = require('react');
+import React from 'react';
 
-var TitleInput = React.createClass({
-    getInitialState: function () {
-        return {value: ''};
-    },
-    handleChange: function () {
+export default class TitleInput extends React.Component{
+    constructor(){
+        super();
+        this.state = {value: ''};
+    }
+
+    handleChange = () => {
         this.setState({value: event.target.value});
-    },
-    handleBlur: function () {
+    }
+
+    handleBlur = () => {
         if (this.state.value.length === 0) {
             this.setState({value: ''});
         }
-    },
-    render: function () {
-        var value = this.state.value;
+    }
+
+    render() {
         return (
             <div className="form-group hovering-textarea-container">
-                <input className="form-control input-lg" type="text" value={value} onChange={this.handleChange} onBlur={this.handleBlur} placeholder="输入调研主题"/>
+                <input className="form-control input-lg" type="text" value={this.state.value} onChange={this.handleChange} onBlur={this.handleBlur} placeholder="输入调研主题"/>
             </div>
         );
     }
-});
-
-module.exports = TitleInput;
+}

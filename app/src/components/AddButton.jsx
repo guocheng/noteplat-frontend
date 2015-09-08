@@ -1,13 +1,17 @@
-var React = require('react');
-var Button = require('react-bootstrap/lib/Button');
-var Glyphicon = require('react-bootstrap/lib/Glyphicon');
+import React from 'react';
+import Button from 'react-bootstrap/lib/Button';
+import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 
-var AddButton = React.createClass({
-    render: function() {
-        return (
-            <Button className="st-add-button" bsStyle={'primary'} bsSize={'large'} block={true} onClick={this.props.onClick}><Glyphicon className="st-top-align" glyph={'plus-sign'}/> 添加新问题 </Button>
-        );
+let {Component, PropTypes} = React;
+
+export default class AddButton extends Component {
+    static propTypes = {
+        onClick: PropTypes.func
     }
-});
 
-module.exports = AddButton;
+    render() {
+       return (
+           <Button className="st-add-button" bsStyle={'primary'} bsSize={'large'} block={true} onClick={this.props.onClick}><Glyphicon className="st-top-align" glyph={'plus-sign'}/> 添加新问题 </Button>
+       );
+    }
+}
