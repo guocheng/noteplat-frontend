@@ -1,12 +1,10 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import Button from 'react-bootstrap/lib/Button';
 import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 
-let {Component, PropTypes} = React;
-
 export default class AddButton extends Component {
     static propTypes = {
-        onClick: PropTypes.func
+        onClick: PropTypes.func.isRequired
     }
 
     render() {

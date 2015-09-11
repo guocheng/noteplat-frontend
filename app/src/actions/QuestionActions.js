@@ -1,5 +1,5 @@
-var AppDispatcher = require('../dispatcher/AppDispatcher');
-var EventType = require('../constants/EventType');
+import {AppDispatcher} from '../dispatcher/AppDispatcher';
+import {EventType} from '../constants/EventType';
 
 var QuestionActions = {
     create: function (questionText, placeholderText, questionType, order) {

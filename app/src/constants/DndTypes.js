@@ -1,7 +1,5 @@
-var keyMirror = require('keymirror');
+import keyMirror from 'keymirror';
 
-var DndTypes = keyMirror({
+export var DndTypes = keyMirror({
     QUESTION: null
 });
-
-module.exports = DndTypes;

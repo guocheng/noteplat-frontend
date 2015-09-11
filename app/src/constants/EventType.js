@@ -1,6 +1,6 @@
-var keyMirror = require('keymirror');
+import keyMirror from 'keymirror';
 
-module.exports = keyMirror({
+export var EventType = keyMirror({
     QUESTION_CREATE: null,
     QUESTION_DESTROY: null,
     QUESTION_TYPE_UPDATE: null,

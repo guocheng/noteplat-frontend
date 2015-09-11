@@ -1,13 +1,11 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react/addons';
 import QuestionEditor from './QuestionEditor';
 import AddButton from './AddButton';
-import QuestionStore from '../stores/QuestionStore';
-import QuestionType from '../constants/QuestionType';
+import { QuestionStore } from '../stores/QuestionStore';
+import { QuestionType } from '../constants/QuestionType';
 import QuestionActions from '../actions/QuestionActions';
 import HTML5Backend from 'react-dnd/modules/backends/HTML5';
 import { DragDropContext } from 'react-dnd';
-
-let {Component, PropTypes} = React;
 
 function getQuestionState(){
     return {
@@ -21,11 +19,6 @@ class QuestionList extends Component{
         allQuestions: PropTypes.arrayOf(PropTypes.object)
     }
 
-    constructor() {
-        super();
-        this.state = getQuestionState();
-    }
-
     componentDidMount() {
         QuestionStore.addChangeListener(this._onChange);
     }
@@ -34,19 +27,21 @@ class QuestionList extends Component{
         QuestionStore.removeChangeListener(this._onChange);
     }
 
+    state = getQuestionState();
+
     _onChange = () => {
         this.setState(getQuestionState());
     }
 
     _onCreateClick = () => {
-        QuestionActions.create('','', Object.keys(QuestionType)[0]);
+        QuestionActions.create('','', QuestionType[Object.keys(QuestionType)[0]]);
     }
 
     render() {
-        var questions = null;
-        var allQuestions = this.state.allQuestions;
+        let questions = null;
+        let allQuestions = this.state.allQuestions;
         if (allQuestions.length > 0){
-            questions = allQuestions.map(function (question){
+            questions = allQuestions.map(question => {
                 return (
                     <QuestionEditor
                         key={question.id}
@@ -54,7 +49,7 @@ class QuestionList extends Component{
                     />);
             });
         }
-        var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+        let ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
         return (
             <div>

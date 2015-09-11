@@ -6,9 +6,9 @@ var port = 3000;
 var ip = 'localhost';
 
 new WebpackDevServer(webpack(config), {
-  publicPath: config.output.publicPath,
   hot: true,
-  historyApiFallback: true
+  historyApiFallback: true,
+  contentBase: './build'
 }).listen(port, ip, function (err, result) {
   if (err) {
     console.log(err);

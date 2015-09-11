@@ -1,32 +1,34 @@
-var React = require('react');
-var Button = require('react-bootstrap/lib/Button');
-var ReactPropTypes = React.PropTypes;
-var SinglelineText = require('./SinglelineText');
-var MultilineText = require('./MultilineText');
+import React, {Component, PropTypes} from 'react';
+import Button from 'react-bootstrap/lib/Button';
+import SinglelineText from './SinglelineText';
+import MultilineText from './MultilineText';
 
+export default class QuestionTypePreview extends Component {
+    static propTypes = {
+      onSave: PropTypes.func.isRequired,
+      selectedType: PropTypes.string.isRequired,
+      typeList: PropTypes.arrayOf(PropTypes.string).isRequired,
+      qid: PropTypes.string.isRequired
+    }
 
-var QuestionTypePreview = React.createClass({
-    propTypes: {
-      onSave: ReactPropTypes.func.isRequired
-    },
-    render: function () {
-        var previewElement;
+    render() {
+        let previewElement;
 
-        switch (this.props.type){
-            case this.props.list[0]:
+        switch (this.props.selectedType){
+            case this.props.typeList[0]:
                 previewElement = <SinglelineText onSave={this.props.onSave} qid={this.props.qid}/>;
                 break;
-            case this.props.list[1]:
+            case this.props.typeList[1]:
                 previewElement = <MultilineText onSave={this.props.onSave} qid={this.props.qid}/>;
                 break;
 
-            case this.props.list[2]:
+            case this.props.typeList[2]:
                 previewElement = <input className="form-control" type="text" placeholder="输入问题" />;
                 break;
-            case this.props.list[3]:
+            case this.props.typeList[3]:
                 previewElement = <input className="form-control" type="text" placeholder="输入问题" />;
                 break;
-            case this.props.list[4]:
+            case this.props.typeList[4]:
                 previewElement = <Button bsStyle="primary" bsSize="medium" disabled={true}>上传照片</Button>;
                 break;
         }
@@ -40,6 +42,4 @@ var QuestionTypePreview = React.createClass({
             </div>
         );
     }
-});
-
-module.exports = QuestionTypePreview;
+}

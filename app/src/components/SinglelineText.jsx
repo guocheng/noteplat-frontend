@@ -1,12 +1,24 @@
-var React = require('react');
+import React, {Component, PropTypes} from 'react';
 
-var SinglelineText = React.createClass({
-    getInitialState: function() {
-        return {
-            value: ''
-        };
-    },
-    render: function() {
+export default class SinglelineText extends Component{
+    static propTypes = {
+        qid: PropTypes.string.isRequired,
+        onSave: PropTypes.func.isRequired
+    }
+
+    state = { value: '' };
+
+    _onSave = () => {
+        this.props.onSave(this.props.qid, {placeholderText: this.state.value});
+    }
+
+    _onChange = (event) => {
+        this.setState({
+            value: event.target.value
+        });
+    }
+
+    render() {
         return (
             <input
                 className="form-control"
@@ -16,17 +28,5 @@ var SinglelineText = React.createClass({
                 onBlur={this._onSave}
             />
         );
-    },
-
-    _onSave: function () {
-        this.props.onSave(this.props.qid, {placeholderText: this.state.value});
-    },
-
-    _onChange: function (event) {
-        this.setState({
-            value: event.target.value
-        });
     }
-});
-
-module.exports = SinglelineText;
+}
